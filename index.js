@@ -1,23 +1,44 @@
+let flavorList = [
+  "vanille",
+  "vanille",
+  "chocolate",
+  "coffee",
+  "chocolate",
+  "vanille",
+];
 
-const userPrompt = () =>{
+const iceCreamList = [];
 
-  let userValue = prompt('Enter ice cream by commas :  ');
-  let userOrderString = userValue.split(',');
-  return userOrderString;
+const updateIceCreamObj = (iceCreamList, flavorList) => {
+ 
 
-}
+  for (let index = 0; index < flavorList.length; index++) {
 
+    let isUpdated = false;
 
-let userData = userPrompt();
+    for (let i = 0; i < iceCreamList.length; i++) {
 
-const iceCream = {}
+      if (iceCreamList[i].name === flavorList[index]) {
 
-for(let index in userData){
+        iceCreamList[i].quantity += 1;
 
-if(iceCream[index]){
-  iceCream[index] = userData[index];
-}
+        isUpdated = true;
 
-}
+        break;
+      }
+    }
+    if (!isUpdated) {
 
-console.log(iceCream);
+      iceCreamList.push({
+
+        name: flavorList[index],
+        quantity: 1,
+
+      });
+    }
+  }
+};
+
+updateIceCreamObj(iceCreamList, flavorList);
+
+console.log(iceCreamList);
